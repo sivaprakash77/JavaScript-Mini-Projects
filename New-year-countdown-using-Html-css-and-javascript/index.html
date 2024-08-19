@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0e0e0e;
+            color: white;
+        }
+        
+        .countdown-container {
+            text-align: center;
+            background-color: #1a1a1a;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            
+        }
+        
+        #countdown {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .time-section {
+            text-align: center;
+        }
+        
+        .time-section span {
+            display: block;
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #08f223;
+        }
+        
+        .label {
+            font-size: 1.2em;
+            color: #f36262;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>New Year Countdown</h1>
+        <div id="countdown">
+            <div class="time-section">
+                <span id="days"></span>
+                <div class="label">Days</div>
+            </div>
+            <div class="time-section">
+                <span id="hours"></span>
+                <div class="label">Hours</div>
+            </div>
+            <div class="time-section">
+                <span id="minutes"></span>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time-section">
+                <span id="seconds"></span>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function countdown() {
+            const newYearDate = new Date('January 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeDifference = newYearDate - now;
+        
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        
+            if (timeDifference < 0) {
+                clearInterval(interval);
+                document.querySelector('.countdown-container').innerHTML = "<h1>Happy New Year!</h1>";
+            }
+        }
+        
+        const interval = setInterval(countdown, 1000);
+        
+    </script>
+</body>
+</html>

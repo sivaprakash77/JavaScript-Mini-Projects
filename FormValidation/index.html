@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="formdiv">
+        <h1 style="text-align: center;">SURVEY FORM</h1>
+    <form name="Surveyform" action="" method="post" onsubmit="return validation()">
+        <label>First Name:</label>
+        <input type="text" name="fname" >
+        <label>Last Name:</label>
+        <input type="text" name="lname">
+        <label>City:</label>
+        <input type="text" name="city">
+        <label>Phone No:</label>
+        <input type="number" name="phno">
+        <label>Address:</label>
+        <textarea name="address"></textarea>
+        <br>
+        <div class="buttondiv">
+            <button value="submit">Submit</button>
+        </div>
+        
+    </form>
+    </div>
+    <script>
+        function validation(){
+            var name = document.Surveyform.fname.value;
+            var lname = document.Surveyform.lname.value;
+            var phno = document.Surveyform.phno.value;
+            var city = document.Surveyform.city.value;
+            var address = document.Surveyform.address.value;
+            if((name==null || name=="")){
+                alert("Please Enter a valid Name");
+                return false;
+            }
+            else if(lname==null || lname==""){
+                alert("Please Enter a valid Name");
+                return false;
+            }
+            else if(city==null || city==""){
+                alert("Please enter city");
+                return false;
+            }
+            else if(phno==null || phno==""){
+                alert("please enter your Phone number");
+                return false;
+            }
+            else if(address==null || address==""){
+                alert("Please enter your Address");
+                return false;
+            }
+            else{
+                document.write("Form Submitted Succesfully");
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

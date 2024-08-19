@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding:0;
+}
+.container{
+    border: 1px solid black;
+    width: 50%;
+    text-align: center;
+    background-color: rgb(255, 169, 183);
+    margin: 120px auto;
+}
+textarea{
+    width: 80%;
+    height: 120px;
+    font-size: 3em;
+}
+.count{
+    padding-left: 20px;
+    display: flex;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+}
+.remai{
+    padding-left: 450px;
+}

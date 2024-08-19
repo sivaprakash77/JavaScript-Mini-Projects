@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="head">
+      <h1>TO-DO LIST</h1>
+    </header>
+    <div class="section">
+        <h1>ADD OR DELETE TASK</h1>
+        <input type="text" id="taskInput" placeholder="Add some task">
+        <button onclick="addTask()">ADD</button>
+        <div id="taskList"></div>
+    </div>
+    <script>
+        function addTask() {
+            const task = document.getElementById("taskInput").value;
+            if (task.length > 0) {
+                document.getElementById("taskList").innerHTML += "<div class='task'>"+"<div class='textbox'>" + task +"</div>"+ "<button class='butt' onclick='deleteTask(this)'>DELETE</button></div>";
+            }
+            document.getElementById("taskInput").value = "";
+        }
+        function deleteTask(element) {
+            element.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

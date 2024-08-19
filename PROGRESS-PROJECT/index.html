@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            margin: 200px;
+            background-color: #ccc;
+            width: 650px;
+          }
+          
+          .step {
+            width: 25%;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #ccc;
+            font-size: 35px;
+            color: rgb(8, 8, 8);
+            
+
+          }
+          
+          
+          .step.active {
+            border-bottom: 2px solid #05f32c;
+            background-color: #f9faf9;
+            border: 7px rgb(8, 243, 8) solid;
+          }
+
+          .step{
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            row-gap: 20px;
+            background-color: rgb(245, 240, 240);
+            border: 7px red solid;
+          }
+          button{
+            width: 100px;
+            height: 30px;
+            position: relative;
+            top: 30px;
+          }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="step active">1</div> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="step">2</div>  &nbsp; &nbsp;&nbsp;&nbsp;
+        <div class="step">3</div> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="step">4</div> &nbsp;&nbsp;&nbsp;&nbsp; 
+        <button id="next-button">Next</button> &nbsp;&nbsp;
+    <button id="previous-button">previous</button>
+    </div>
+    
+
+    <script>
+        const steps = document.querySelectorAll('.step');
+        const nextButton = document.getElementById('next-button');
+        const previousbutton = document.getElementById('previous-button')
+        let currentStep = 0;
+
+        nextButton.addEventListener('click', () => {
+            currentStep++;
+            updateProgressBar();
+        });
+
+        previousbutton.addEventListener('click', () => {
+            currentStep--;
+            updateProgressBar1();
+        });
+
+        function updateProgressBar() {
+            steps.forEach((step, index) => {
+                if (index <= currentStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        }
+
+        function updateProgressBar1() {
+            steps.forEach((step, index) => {
+                if (index > currentStep) {
+                    step.classList.remove('active');
+                } else {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .password-generator {
+            width: 300px;
+            margin: 40px auto;
+            text-align: center;
+          }
+          
+          #password {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+          }
+          
+          .options {
+            margin-bottom: 20px;
+          }
+          
+          label {
+            margin-right: 20px;
+          }
+          .stopwatch {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          
+          .time {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+          }
+          
+          button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+          }
+          
+          button:hover {
+            background-color: #3e8e41;
+          }
+          
+
+          .laps {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+          }
+          
+          .laps li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+          }
+          
+          .laps li:last-child {
+            border-bottom: none;
+          }
+          
+          .lap-button {
+            background-color: #ff9800;
+          }
+          
+          .lap-button:hover {
+            background-color: #e68a00;
+          }
+                    
+    </style>
+</head>
+<body>
+    <div class="password-generator">
+        <h2>Password Generator</h2>
+        <input type="text" id="password" readonly>
+        <button id="generate">Generate Password</button><br><br>
+        <div class="options">
+          <label>
+            <input type="checkbox" id="uppercase"> Uppercase
+          </label><br><br>
+          <label>
+            <input type="checkbox" id="numbers"> Numbers
+          </label><br><br>
+          <label>
+            <input type="checkbox" id="symbols"> Symbols
+          </label>
+        </div>
+      </div>
+      <script>
+        const generate = document.getElementById('generate');
+        const password = document.getElementById('password');
+        const uppercase = document.getElementById('uppercase');
+        const numbers = document.getElementById('numbers');
+        const symbols = document.getElementById('symbols');
+        
+        generate.addEventListener('click', () => {
+          const length = 15; 
+          let chars = 'abcdefghijklmnopqrstuvwxyz';
+          if (uppercase.checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          if (numbers.checked) chars += '0123456789';
+          if (symbols.checked) chars += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+        
+          let passwordValue = '';
+          for (let i = 0; i < length; i++) {
+            passwordValue += chars.charAt(Math.floor(Math.random() * chars.length));
+          }
+        
+          password.value = passwordValue;
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>CALCULATOR</h1>
+    <form>
+        <table cellpadding="15" cellspacing="12">
+            <tr>
+                <td>
+                    <input type="text" id="inp">
+                    <button type="button" class="btn1" onclick="clearDisplay()" id="clear">C</button>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value=" 1 " onclick="Value('1')">
+                    <input type="button" value=" 2 " onclick="Value('2')">
+                    <input type="button" value=" 3 " onclick="Value('3')">
+                    <input type="button" value=" + " onclick="Value('+')"><br>
+                    <input type="button" value=" 4 " onclick="Value('4')">
+                    <input type="button" value=" 5 " onclick="Value('5')">
+                    <input type="button" value=" 6 " onclick="Value('6')">
+                    <input type="button" value=" - " onclick="Value('-')"><br>
+                    <input type="button" value=" 7 " onclick="Value('7')">
+                    <input type="button" value=" 8 " onclick="Value('8')">
+                    <input type="button" value=" 9 " onclick="Value('9')">
+                    <input type="button" value=" * " onclick="Value('*')"><br>
+                    <input type="button" value=" / " onclick="Value('/')">
+                    <input type="button" value=" 0 " onclick="Value('0')">
+                    <input type="button" value=" . " onclick="Value('.')">
+                    <input type="button" value=" = " onclick="calculateResult()">
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+       
+        function clearDisplay() {
+            document.getElementById('inp').value = '';
+        }
+
+        
+        function Value(value) {
+            document.getElementById('inp').value += value;
+        }
+
+        
+        function calculateResult() {
+            try {
+                const result = eval(document.getElementById('inp').value);
+                document.getElementById('inp').value = result;
+            } catch (error) {
+                document.getElementById('inp').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>

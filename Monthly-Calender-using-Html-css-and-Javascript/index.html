@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Calendar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fcfbfb;
+        }
+        
+        .calendar {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .month {
+            background-color: #f13b03;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .month h2 {
+            margin: 0;
+            font-size: 1.6em;
+        }
+        
+        #prev, #next {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        #prev:hover, #next:hover {
+            transform: scale(1.2);
+        }
+        
+        .weekdays {
+            background-color: #f4f4f4;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            padding: 10px 0;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 10px 0;
+        }
+        
+        .days div {
+            text-align: center;
+            padding: 10px 0;
+            margin: 5px 0;
+            cursor: pointer;
+            color: #333;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-radius: 50%;
+        }
+        
+        .days div:hover {
+            background-color: #ebdc11;
+            color: white;
+        }
+        
+        .days div.inactive {
+            color: #ccc;
+            cursor: default;
+        }
+        
+        .days div.today {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: 700;
+        }
+        .date{
+            color: indigo;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="calendar">
+        <div class="month">
+            <button id="prev" onclick="changeMonth(-1)">&#10094;</button>
+            <h2 id="month-year"></h2>
+            <button id="next" onclick="changeMonth(1)">&#10095;</button>
+        </div>
+        <div class="weekdays">
+            <div class="date">Sun</div>
+            <div class="date">Mon</div>
+            <div class="date">Tue</div>
+            <div class="date">Wed</div>
+            <div class="date">Thu</div>
+            <div class="date">Fri</div>
+            <div class="date">Sat</div>
+        </div>
+        <div class="days" id="days"></div>
+    </div>
+
+    <script>
+        const daysContainer = document.getElementById('days');
+const monthYearLabel = document.getElementById('month-year');
+let currentDate = new Date();
+
+function renderCalendar() {
+    currentDate.setDate(1);
+
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+
+    monthYearLabel.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+    const firstDayIndex = currentDate.getDay();
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    const prevLastDay = new Date(year, month, 0).getDate();
+    const lastDayIndex = new Date(year, month + 1, 0).getDay();
+    const nextDays = 7 - lastDayIndex - 1;
+
+    let days = '';
+
+    for (let x = firstDayIndex; x > 0; x--) {
+        days += `<div class="inactive">${prevLastDay - x + 1}</div>`;
+    }
+
+    for (let i = 1; i <= lastDay; i++) {
+        if (i === new Date().getDate() && currentDate.getMonth() === new Date().getMonth()) {
+            days += `<div class="today">${i}</div>`;
+        } else {
+            days += `<div>${i}</div>`;
+        }
+    }
+
+    for (let j = 1; j <= nextDays; j++) {
+        days += `<div class="inactive">${j}</div>`;
+    }
+
+    daysContainer.innerHTML = days;
+}
+
+function changeMonth(direction) {
+    currentDate.setMonth(currentDate.getMonth() + direction);
+    renderCalendar();
+}
+
+renderCalendar();
+
+    </script>
+</body>
+</html>
